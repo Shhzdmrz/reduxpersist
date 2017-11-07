@@ -14,6 +14,10 @@ const onBeforeLift = () => {
 }
 
 export default class App extends Component {
+  // componentDidMount(){
+  //   persistor.purge();
+  // }
+
   render() {
     return (
       <Provider store={store}>

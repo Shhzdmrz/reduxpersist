@@ -15,12 +15,12 @@ if(__DEV__){ middleware.push(createLogger()); }
 const reducers = persistCombineReducers(config, rootReducers);
 const enhancers = [applyMiddleware(...middleware)];
 const initialState = {};
-
-
+const persistConfig = { enhancers };
+const store = createStore(reducers, undefined, compose(...enhancers));
+const persistor = persistStore(store, persistConfig, () => {
+    //console.log(store.getState());
+});
 const configureStore = () => {
-    const store = createStore(reducers, undefined, compose(...enhancers));
-    const persistor = persistStore(store);
-
     return { persistor, store };
 }
 
